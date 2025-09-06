@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Cutipie!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 900px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px; /* Space for the cake */
+        }
+        
+        /* Animated Birthday Cake Styles - Positioned lower */
+        .cake-container {
+            position: absolute;
+            top: -70px; /* Moved down from -90px */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 180px;
+            z-index: 100;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        .cake-layer {
+            position: absolute;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .layer-3 {
+            width: 140px;
+            height: 45px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            bottom: 0;
+            left: 40px;
+            z-index: 3;
+            animation: layerPulse 4s ease-in-out infinite;
+        }
+        
+        .layer-2 {
+            width: 170px;
+            height: 50px;
+            background: linear-gradient(to right, #fad0c4, #ff9a9e);
+            bottom: 45px;
+            left: 25px;
+            z-index: 2;
+            animation: layerPulse 5s ease-in-out infinite;
+        }
+        
+        .layer-1 {
+            width: 200px;
+            height: 55px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            bottom: 95px;
+            left: 10px;
+            z-index: 1;
+            animation: layerPulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes layerPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        
+        .cake-decoration {
+            position: absolute;
+            background-color: #ff5e5e;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            z-index: 4;
+            animation: decorationTwinkle 3s infinite;
+        }
+        
+        @keyframes decorationTwinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .decoration-1 { top: 15px; left: 35px; animation-delay: 0.2s; }
+        .decoration-2 { top: 20px; left: 85px; animation-delay: 0.7s; }
+        .decoration-3 { top: 12px; right: 45px; animation-delay: 1.2s; }
+        .decoration-4 { bottom: 25px; left: 55px; animation-delay: 0.5s; }
+        .decoration-5 { bottom: 20px; right: 55px; animation-delay: 1s; }
+        .decoration-6 { top: 40px; left: 70px; animation-delay: 0.9s; }
+        
+        .candle {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background: linear-gradient(to bottom, #fff, #ffdb5e);
+            border-radius: 4px;
+            top: -25px;
+            z-index: 5;
+        }
+        
+        .candle-1 { left: 55px; }
+        .candle-2 { left: 110px; }
+        .candle-3 { right: 55px; }
+        
+        .flame {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            background: linear-gradient(to bottom, #ffdb5e, #ff5e5e);
+            border-radius: 50% 50% 20% 20%;
+            top: -45px;
+            animation: flicker 1.5s infinite alternate;
+            transform-origin: center bottom;
+        }
+        
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 1; }
+            25% { transform: scale(1.1) rotate(1deg); opacity: 0.9; }
+            50% { transform: scale(0.9) rotate(-1deg); opacity: 0.95; }
+            75% { transform: scale(1.05) rotate(2deg); opacity: 0.9; }
+            100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+        }
+        
+        .flame-1 { left: 52px; }
+        .flame-2 { left: 107px; }
+        .flame-3 { right: 52px; }
+        
+        .flame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: flameShine 1.5s infinite alternate;
+        }
+        
+        @keyframes flameShine {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff5e5e;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+        
+        h1 {
+            color: #ff5e5e;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 30px; /* Reduced space below cake */
+        }
+        
+        .timer-container {
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .timer {
+            background-color: #ff5e5e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .birthday-popup {
+            background-color: #ff5e5e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: popIn 0.5s forwards;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .wish-text {
+            font-size: 1.5rem;
+            color: #ff5e5e;
+            font-weight: bold;
+            margin: 25px 0;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .date {
+            font-style: italic;
+            color: #666;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background-color: #ff5e5e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        button:hover {
+            background-color: #ff7c7c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .memory-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .memory-section h2 {
+            color: #5a7dff;
+            margin-bottom: 15px;
+        }
+        
+        .memory-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .memory-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .memory-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .memory-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .memory-item:hover .memory-img {
+            transform: scale(1.05);
+        }
+        
+        .memory-details {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .memory-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .memory-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Message Section */
+        .message-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(to right, #d4fc79, #96e6a1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-section h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .message-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            resize: vertical;
+            min-height: 100px;
+            font-size: 1rem;
+        }
+        
+        .message-display {
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .message-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        .message-item:last-child {
+            border-bottom: none;
+        }
+        
+        .message-text {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #999;
+            font-style: italic;
+        }
+        
+        .message-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .message-actions button {
+            padding: 3px 8px;
+            font-size: 0.7rem;
+        }
+        
+        .empty-message {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            display: block;
+            max-width: 90%;
+            max-height: 80%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: zoom 0.3s ease;
+        }
+        
+        @keyframes zoom {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #ff5e5e;
+        }
+        
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .modal-subtitle {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .memory-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .cake-container {
+                transform: translateX(-50%) scale(0.8);
+                top: -60px; /* Adjusted for mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin-top: 60px; /* Reduced for mobile */
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-top: 20px;
+            }
+            
+            .timer, .birthday-popup {
+                font-size: 1.5rem;
+                padding: 10px 20px;
+            }
+            
+            .wish-text {
+                font-size: 1.2rem;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 60%;
+            }
+            
+            .close {
+                font-size: 30px;
+                top: 15px;
+                right: 20px;
+            }
+            
+            .message-actions {
+                position: static;
+                margin-top: 10px;
+                justify-content: flex-end;
+            }
+            
+            .cake-container {
+                transform: translateX(-50%) scale(0.7);
+                top: -50px; /* Adjusted for mobile */
+            }
+            
+            .modal-title {
+                font-size: 1rem;
+            }
+            
+            .modal-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated 3-Layered Birthday Cake -->
+    <div class="cake-container">
+        <div class="cake-layer layer-1"></div>
+        <div class="cake-layer layer-2"></div>
+        <div class="cake-layer layer-3"></div>
+        
+        <!-- Cake Decorations -->
+        <div class="cake-decoration decoration-1"></div>
+        <div class="cake-decoration decoration-2"></div>
+        <div class="cake-decoration decoration-3"></div>
+        <div class="cake-decoration decoration-4"></div>
+        <div class="cake-decoration decoration-5"></div>
+        <div class="cake-decoration decoration-6"></div>
+        
+        <!-- Candles with animated flames -->
+        <div class="candle candle-1">
+            <div class="flame flame-1"></div>
+        </div>
+        <div class="candle candle-2">
+            <div class="flame flame-2"></div>
+        </div>
+        <div class="candle candle-3">
+            <div class="flame flame-3"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Birthday Wishes</h1>
+        
+        <div class="timer-container">
+            <div class="timer" id="timer">15</div>
+        </div>
+        
+        <div class="wish-text">
+            <strong>Wishing you a day filled with happiness and joy!</strong>
+        </div>
+        <div class="date">Today</div>
+        
+        <div class="memory-section">
+            <h2>Special Memories</h2>
+            <div class="memory-content">
+                <!-- Pair 1: Two friends on the field-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/LXkYXjrj/s1.jpg" alt="Two friends on the field" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title">Dost Ho Toh Aisi 🤝</div>
+                        <div class="memory-subtitle"> Ek saath gossip, ek saath photoshoot — asli desi combo!</div>
+                    </div>
+                </div>
+                
+                <!-- Pair 2: Girl in flower field, side view-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/KjgKSp3T/s2.jpg" alt="Phoolon Ki Dukan 🌼" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title">Phoolon Ki Dukan 🌼</div>
+                        <div class="memory-subtitle">Kudrat ne kaha – "chal beta, free makeover le le." 😂</div>
+                    </div>
+                </div>
+                
+                <!-- Pair 3: Girl in yellow saree with red blouse-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/1GxcjjYz/s3.jpg" alt="Sanskaari Swag ✨" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title">Sanskaari Swag ✨</div>
+                        <div class="memory-subtitle"> Matlab rishtedaar bole – “bahu material” 👀</div>
+                    </div>
+                </div>
+
+                <!-- Pair 4: (Girl sitting at night with city lights)-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/ZzgvPXhL/s4.jpg" alt=" Sheher Ki Raat, Gaon Ki Baat 🌙" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title"> Sheher Ki Raat, Gaon Ki Baat 🌙</div>
+                        <div class="memory-subtitle">Desi dil hai… par lights dekh ke “wow wow” karna zaroori hai. 😂</div>
+                    </div>
+                </div>
+                
+                <!-- Pair 5: (Two girls in colorful sarees)-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/TxjHRg0s/s5.jpg" alt=" Shaadi Mein Zaroor Aana 💃" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title"> Shaadi Mein Zaroor Aana 💃</div>
+                        <div class="memory-subtitle">Ek dulhan se kam nahi, ek dulhan se zyada nahi.</div>
+                    </div>
+                </div>
+                
+                <!-- Pair 6: (Girl in navy blue dress, smiling)-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/chDvFcxZ/s6.jpg" alt="Khilli Khilli Hasi 🌸" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title">Khilli Khilli Hasi 🌸</div>
+                        <div class="memory-subtitle">Matlab free WiFi mil gaya ho jaise. 😁</div>
+                    </div>
+                </div>
+
+               <!-- Pair 7: (Girl with flowers in hair, back view)-->
+                <div class="memory-item" onclick="openModal(this)">
+                    <img src="https://i.ibb.co/xqFXFrwJ/s7.jpg" alt="Garden Mein Ghoomne Wali Aunty 🌼" class="memory-img">
+                    <div class="memory-details">
+                        <div class="memory-title">Garden Mein Ghoomne Wali Aunty 🌼</div>
+                        <div class="memory-subtitle">Phool bhi bole – "selfie le na humare saath!" 🌸😂</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Message Section -->
+        <div class="message-section">
+            <h2>Leave Birthday Messages</h2>
+            <div class="message-form">
+                <textarea id="messageInput" placeholder="Type your birthday message here..."></textarea>
+                <button id="sendMessageBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </div>
+            
+            <div class="message-display" id="messageDisplay">
+                <div class="empty-message">No messages yet. Be the first to wish!</div>
+            </div>
+        </div>
+        
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modalImage">
+            <div id="modalCaption" class="modal-caption"></div>
+        </div>
+        
+        <div class="buttons">
+            <button id="confettiBtn">
+                <i class="fas fa-birthday-cake"></i>
+                Throw Confetti
+            </button>
+            <button id="clearMessagesBtn">
+                <i class="fas fa-trash"></i>
+                Clear All Messages
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Timer functionality - Countdown from 15 to 0
+        let countdownValue = 15;
+        let countdownActive = true;
+        const timerContainer = document.querySelector('.timer-container');
+        const timerElement = document.getElementById('timer');
+        
+        function updateTimer() {
+            if (countdownActive) {
+                timerElement.textContent = countdownValue;
+                
+                if (countdownValue > 0) {
+                    countdownValue--;
+                } else {
+                    // When timer reaches 0
+                    countdownActive = false;
+                    showBirthdayPopup();
+                    
+                    // Restart the countdown after 5 seconds
+                    setTimeout(() => {
+                        countdownValue = 15;
+                        countdownActive = true;
+                        timerElement.style.display = 'block';
+                    }, 5000);
+                }
+            }
+        }
+        
+        function showBirthdayPopup() {
+            // Hide the timer
+            timerElement.style.display = 'none';
+            
+            // Create and show the birthday message
+            const popup = document.createElement('div');
+            popup.className = 'birthday-popup';
+            popup.textContent = 'Enjoy your day Cutipie!!';
+            timerContainer.appendChild(popup);
+            
+            // Remove popup after 5 seconds
+            setTimeout(() => {
+                popup.remove();
+            }, 5000);
+        }
+        
+        setInterval(updateTimer, 1000);
+        
+        // Image Modal functionality
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("modalCaption");
+        
+        function openModal(element) {
+            const imageSrc = element.querySelector('.memory-img').src;
+            const title = element.querySelector('.memory-title').textContent;
+            const subtitle = element.querySelector('.memory-subtitle').textContent;
+            
+            modal.style.display = "flex";
+            modalImg.src = imageSrc;
+            
+            // Create caption with both title and subtitle
+            captionText.innerHTML = `
+                <div class="modal-title">${title}</div>
+                <div class="modal-subtitle">${subtitle}</div>
+            `;
+            
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Message functionality - Store all messages in localStorage
+        let messages = [];
+        let editingMessageId = null;
+        
+        // Load messages from localStorage
+        function loadMessagesFromStorage() {
+            const storedMessages = localStorage.getItem('birthdayMessages');
+            if (storedMessages) {
+                messages = JSON.parse(storedMessages);
+            }
+            updateMessageDisplay();
+        }
+        
+        // Save messages to localStorage
+        function saveMessagesToStorage() {
+            localStorage.setItem('birthdayMessages', JSON.stringify(messages));
+        }
+        
+        // Generate a unique ID for each message
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        
+        // Format the current time
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        // Update the message display
+        function updateMessageDisplay() {
+            const messageDisplay = document.getElementById('messageDisplay');
+            
+            if (messages.length === 0) {
+                messageDisplay.innerHTML = '<div class="empty-message">No messages yet. Be the first to wish!</div>';
+                return;
+            }
+            
+            messageDisplay.innerHTML = '';
+            messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message-item';
+                messageElement.dataset.id = message.id;
+                
+                messageElement.innerHTML = `
+                    <div class="message-text">${message.text}</div>
+                    <div class="message-time">${message.time}</div>
+                    <div class="message-actions">
+                        <button class="edit-message-btn" onclick="editMessage('${message.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="delete-message-btn" onclick="deleteMessage('${message.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                messageDisplay.appendChild(messageElement);
+            });
+            
+            // Scroll to the bottom to show the latest message
+            messageDisplay.scrollTop = messageDisplay.scrollHeight;
+        }
+        
+        // Add a new message
+        function addMessage(text) {
+            const newMessage = {
+                id: generateId(),
+                text: text,
+                time: getCurrentTime()
+            };
+            
+            messages.push(newMessage);
+            saveMessagesToStorage();
+            updateMessageDisplay();
+        }
+        
+        // Edit an existing message
+        function editMessage(id) {
+            const message = messages.find(m => m.id === id);
+            if (message) {
+                document.getElementById('messageInput').value = message.text;
+                editingMessageId = id;
+                document.getElementById('sendMessageBtn').innerHTML = '<i class="fas fa-save"></i> Update Message';
+            }
+        }
+        
+        // Update an existing message
+        function updateMessage(id, newText) {
+            const messageIndex = messages.findIndex(m => m.id === id);
+            if (messageIndex !== -1) {
+                messages[messageIndex].text = newText;
+                messages[messageIndex].time = getCurrentTime() + ' (edited)';
+                saveMessagesToStorage();
+                updateMessageDisplay();
+            }
+        }
+        
+        // Delete a message
+        function deleteMessage(id) {
+            messages = messages.filter(m => m.id !== id);
+            saveMessagesToStorage();
+            updateMessageDisplay();
+        }
+        
+        // Clear all messages
+        function clearAllMessages() {
+            if (confirm('Are you sure you want to clear all messages? This cannot be undone.')) {
+                messages = [];
+                saveMessagesToStorage();
+                updateMessageDisplay();
+            }
+        }
+        
+        // Button functionality
+        document.getElementById('confettiBtn').addEventListener('click', createConfetti);
+        
+        document.getElementById('sendMessageBtn').addEventListener('click', function() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                if (editingMessageId) {
+                    // Update existing message
+                    updateMessage(editingMessageId, message);
+                    editingMessageId = null;
+                    this.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                } else {
+                    // Add new message
+                    addMessage(message);
+                }
+                
+                messageInput.value = '';
+            }
+        });
+        
+        document.getElementById('clearMessagesBtn').addEventListener('click', clearAllMessages);
+        
+        // Confetti creation
+        function createConfetti() {
+            const container = document.querySelector('.container');
+            const colors = ['#ff5e5e', '#5e7aff', '#5eff7a', '#ffdb5e', '#db5eff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 15 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                container.appendChild(confetti);
+                
+                // Animate confetti
+                const animationDuration = Math.random() * 2 + 1 + 's';
+                confetti.style.transition = `transform ${animationDuration}, opacity ${animationDuration}`;
+                
+                setTimeout(() => {
+                    confetti.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg)`;
+                    confetti.style.opacity = '0';
+                }, 10);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, parseFloat(animationDuration) * 1000 + 1000);
+            }
+        }
+        
+        // Initialize the page
+        window.addEventListener('load', function() {
+            // Load messages from localStorage
+            loadMessagesFromStorage();
+            
+            // Add some initial confetti
+            setTimeout(createConfetti, 500);
+            setTimeout(createConfetti, 1000);
+            setTimeout(createConfetti, 1500);
+        });
+    </script>
+</body>
+</html>
